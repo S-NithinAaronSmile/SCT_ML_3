@@ -71,3 +71,13 @@ print(f"Accuracy: {accuracy * 100:.2f}%")
 
 print("\nDetailed report:")
 print(classification_report(y_test, predictions, target_names=["cat", "dog"]))
+
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
+
+cm = confusion_matrix(y_test, predictions)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["cat", "dog"])
+disp.plot(cmap="Blues")
+plt.title("Confusion Matrix - Cat vs Dog Classification")
+plt.savefig("confusion_matrix.png")
+print("Confusion matrix saved as confusion_matrix.png")
