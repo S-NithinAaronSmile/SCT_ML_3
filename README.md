@@ -25,6 +25,12 @@ Implement a Support Vector Machine (SVM) to classify images of cats and dogs, us
 
 The confusion matrix shows how many cats and dogs were correctly vs incorrectly classified. Misclassifications are roughly balanced between the two classes, consistent with the overall accuracy.
 
+## Sample Predictions
+
+![Sample Predictions](sample_predictions.png)
+
+A random sample of test images with the model's predictions vs actual labels — green checkmarks indicate correct predictions, red X's indicate misclassifications.
+
 ## Notes
 - Accuracy is modest because this uses raw pixel values rather than more advanced feature extraction (e.g. deep learning/CNNs), which is expected for a classical SVM approach on image data
 - Trained on a subset of the full dataset to keep runtime practical on a personal laptop
@@ -34,7 +40,7 @@ The confusion matrix shows how many cats and dogs were correctly vs incorrectly 
 - OpenCV (image loading/resizing)
 - scikit-learn (SVM, train/test split, scaling, metrics)
 - NumPy
-- Matplotlib (confusion matrix visualization)
+- Matplotlib (confusion matrix and sample prediction visualization)
 
 ## How to run
 1. Install dependencies: `pip install opencv-python scikit-learn numpy matplotlib`
@@ -42,4 +48,4 @@ The confusion matrix shows how many cats and dogs were correctly vs incorrectly 
 3. Download `train.zip`, extract it, and place the resulting `train` folder in the same directory as `train_model.py`
    - After extraction, image paths should look like: `train/train/cat.0.jpg`
 4. Run: `python train_model.py`
-5. This prints accuracy/classification report and saves `confusion_matrix.png`
+5. This prints accuracy/classification report and saves `confusion_matrix.png` and `sample_predictions.png`

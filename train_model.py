@@ -81,3 +81,31 @@ disp.plot(cmap="Blues")
 plt.title("Confusion Matrix - Cat vs Dog Classification")
 plt.savefig("confusion_matrix.png")
 print("Confusion matrix saved as confusion_matrix.png")
+import random
+
+# Pick 8 random images from the test set to display
+sample_indices = random.sample(range(len(X_test)), 8)
+
+fig, axes = plt.subplots(2, 4, figsize=(14, 7))
+class_names = ["cat", "dog"]
+
+for ax, idx in zip(axes.flat, sample_indices):
+    # Reconstruct the image from its flattened form
+    img = X_test[idx].reshape(64, 64, 3)
+    img = ((img - img.min()) / (img.max() - img.min()) * 255).astype("uint8")  # rescale for display
+    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+    predicted_label = class_names[predictions[idx]]
+    actual_label = class_names[y_test[idx]]
+    correct = predicted_label == actual_label
+
+    ax.imshow(img_rgb)
+    ax.axis("off")
+    color = "green" if correct else "red"
+    mark = "✓" if correct else "✗"
+    ax.set_title(f"Predicted: {predicted_label} {mark}\nActual: {actual_label}", color=color, fontsize=11)
+
+plt.suptitle("Sample Predictions", fontsize=14)
+plt.tight_layout()
+plt.savefig("sample_predictions.png")
+print("Sample predictions saved as sample_predictions.png")
